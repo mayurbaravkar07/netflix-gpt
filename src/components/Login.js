@@ -3,13 +3,13 @@ import Header from "./Header";
 import { CheckValidateData } from "../utils/Validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { PROFILE_PIC } from "../utils/constants";
+
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const navigate = useNavigate();
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -35,13 +35,9 @@ const Login = () => {
 
           updateProfile(user, {
               displayName:name.current.value,
-              photoURL:"https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg"
-          }).then(() => {
-            navigate("/browse");
+              photoURL:PROFILE_PIC,
           })
-          .catch((error) => {
-            setErrorMessage(error.message);
-          });
+
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -53,7 +49,7 @@ const Login = () => {
       signInWithEmailAndPassword(auth, emailData, passwordData)
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate('/browse');
+         
         })
         .catch((error) => {
           const errorMessage = error.message;

@@ -1,9 +1,24 @@
-import React from 'react'
-import Header from './Header'
-const Browse = () => {
-  return (
-    <Header />
-  )
-}
+import React, { useEffect } from 'react';
+import Header from './Header';
+import useNowPlayingMovies from '../utils/hooks/useNowPlayingMovies';
+import MainContainer from './MainContainer';
 
-export default Browse
+
+
+
+const Browse = () => {
+
+  // Fetch Data From the TMDB API and update the store
+  useNowPlayingMovies();
+
+ 
+  return (
+    <div>
+      <Header />
+      <MainContainer/>
+    </div>
+   
+  );
+};
+
+export default Browse;
