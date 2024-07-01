@@ -2,7 +2,7 @@
 ....
 # Netflix GPT
 
- -create-react-app
+ -create-react-app.
  -configured-Tailwind css
 
 
